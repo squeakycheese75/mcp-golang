@@ -163,6 +163,13 @@ func WithName(name string) ServerOptions {
 	}
 }
 
+func WithInstructions(instructions string) ServerOptions {
+	return func(s *Server) {
+		instructionsCopy := instructions
+		s.serverInstructions = &instructionsCopy
+	}
+}
+
 func WithVersion(version string) ServerOptions {
 	return func(s *Server) {
 		s.serverVersion = version
