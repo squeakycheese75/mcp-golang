@@ -994,12 +994,12 @@ func (s *Server) RegisterToolWithSchema(
 	name string,
 	description string,
 	schema *jsonschema.Schema,
-	handler func(context.Context, baseCallToolRequestParams) *toolResponseSent,
+	handler any,
 ) error {
 	s.tools.Store(name, &Tool{
 		Name:            name,
 		Description:     description,
-		Handler:         handler,
+		Handler:         createWrappedToolHandler(handler),
 		ToolInputSchema: schema,
 	})
 	return s.sendToolListChangedNotification()
