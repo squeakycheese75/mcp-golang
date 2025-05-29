@@ -127,6 +127,8 @@ type tool struct {
 	ToolInputSchema *jsonschema.Schema
 }
 
+type Tool = tool
+
 type resource struct {
 	Name        string
 	Description string
@@ -986,6 +988,21 @@ func (s *Server) handleResourceCalls(ctx context.Context, req *transport.BaseJSO
 
 func (s *Server) handlePing(ctx context.Context, request *transport.BaseJSONRPCRequest, extra protocol.RequestHandlerExtra) (transport.JsonRpcBody, error) {
 	return map[string]interface{}{}, nil
+}
+
+func (s *Server) RegisterToolWithSchema(
+	name string,
+	description string,
+	schema *jsonschema.Schema,
+	handler func(context.Context, baseCallToolRequestParams) *toolResponseSent,
+) error {
+	s.tools.Store(name, &Tool{
+		Name:            name,
+		Description:     description,
+		Handler:         handler,
+		ToolInputSchema: schema,
+	})
+	return s.sendToolListChangedNotification()
 }
 
 func validateToolHandler(handler any) error {
