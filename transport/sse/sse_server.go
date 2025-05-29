@@ -4,7 +4,7 @@ package sse
 //import (
 //	"context"
 //	"fmt"
-//	sse2 "github.com/metoro-io/mcp-golang/transport/sse/internal/sse"
+//	sse2 "github.com/squeakycheese75/mcp-golang/transport/sse/internal/sse"
 //	"io"
 //	"net/http"
 //)

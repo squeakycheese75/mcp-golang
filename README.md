@@ -11,9 +11,9 @@
 ![GitHub license](https://img.shields.io/github/license/metoro-io/mcp-golang)
 ![GitHub contributors](https://img.shields.io/github/contributors/metoro-io/mcp-golang)
 ![GitHub last commit](https://img.shields.io/github/last-commit/metoro-io/mcp-golang)
-[![GoDoc](https://pkg.go.dev/badge/github.com/metoro-io/mcp-golang.svg)](https://pkg.go.dev/github.com/metoro-io/mcp-golang)
-[![Go Report Card](https://goreportcard.com/badge/github.com/metoro-io/mcp-golang)](https://goreportcard.com/report/github.com/metoro-io/mcp-golang)
-![Tests](https://github.com/metoro-io/mcp-golang/actions/workflows/go-test.yml/badge.svg)
+[![GoDoc](https://pkg.go.dev/badge/github.com/squeakycheese75/mcp-golang.svg)](https://pkg.go.dev/github.com/squeakycheese75/mcp-golang)
+[![Go Report Card](https://goreportcard.com/badge/github.com/squeakycheese75/mcp-golang)](https://goreportcard.com/report/github.com/squeakycheese75/mcp-golang)
+![Tests](https://github.com/squeakycheese75/mcp-golang/actions/workflows/go-test.yml/badge.svg)
 
 
 
@@ -37,7 +37,7 @@ Docs at [https://mcpgolang.com](https://mcpgolang.com)
 
 ## Example Usage
 
-Install with `go get github.com/metoro-io/mcp-golang`
+Install with `go get github.com/squeakycheese75/mcp-golang`
 
 ### Server Example
 
@@ -46,8 +46,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/metoro-io/mcp-golang"
-	"github.com/metoro-io/mcp-golang/transport/stdio"
+	"github.com/squeakycheese75/mcp-golang"
+	"github.com/squeakycheese75/mcp-golang/transport/stdio"
 )
 
 // Tool arguments are just structs, annotated with jsonschema tags
@@ -121,8 +121,8 @@ package main
 import (
     "context"
     "log"
-    mcp "github.com/metoro-io/mcp-golang"
-    "github.com/metoro-io/mcp-golang/transport/stdio"
+    mcp "github.com/squeakycheese75/mcp-golang"
+    "github.com/squeakycheese75/mcp-golang/transport/stdio"
 )
 
 // Define type-safe arguments

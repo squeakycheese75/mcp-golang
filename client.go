@@ -4,9 +4,9 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/metoro-io/mcp-golang/internal/protocol"
-	"github.com/metoro-io/mcp-golang/transport"
 	"github.com/pkg/errors"
+	"github.com/squeakycheese75/mcp-golang/internal/protocol"
+	"github.com/squeakycheese75/mcp-golang/transport"
 )
 
 // Client represents an MCP client that can connect to and interact with MCP servers

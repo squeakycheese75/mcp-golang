@@ -1,8 +1,9 @@
-module github.com/metoro-io/mcp-golang
+module github.com/squeakycheese75/mcp-golang
 
 go 1.21
 
 require (
+	github.com/gin-gonic/gin v1.8.1
 	github.com/invopop/jsonschema v0.12.0
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.9.0
@@ -14,7 +15,6 @@ require (
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/gin-gonic/gin v1.8.1 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.10.0 // indirect

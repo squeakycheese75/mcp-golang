@@ -63,7 +63,7 @@ package sse
 //	"context"
 //	"encoding/json"
 //	"fmt"
-//	"github.com/metoro-io/mcp-golang/transport"
+//	"github.com/squeakycheese75/mcp-golang/transport"
 //	"net/http"
 //	"sync"
 //

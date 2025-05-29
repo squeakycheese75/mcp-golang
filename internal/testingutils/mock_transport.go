@@ -4,7 +4,7 @@ import (
 	"context"
 	"sync"
 
-	"github.com/metoro-io/mcp-golang/transport"
+	"github.com/squeakycheese75/mcp-golang/transport"
 )
 
 // MockTransport implements Transport interface for testing

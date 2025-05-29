@@ -18,9 +18,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/metoro-io/mcp-golang/internal/protocol"
-	"github.com/metoro-io/mcp-golang/transport"
-	mcphttp "github.com/metoro-io/mcp-golang/transport/http"
+	"github.com/squeakycheese75/mcp-golang/internal/protocol"
+	"github.com/squeakycheese75/mcp-golang/transport"
+
+	mcphttp "github.com/squeakycheese75/mcp-golang/transport/http"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -28,8 +29,8 @@ import (
 const testServerCode = `package main
 
 import (
-	mcp "github.com/metoro-io/mcp-golang"
-	"github.com/metoro-io/mcp-golang/transport/stdio"
+	mcp "github.com/squeakycheese75/mcp-golang"
+	"github.com/squeakycheese75/mcp-golang/transport/stdio"
 )
 
 type EchoArgs struct {
@@ -83,7 +84,7 @@ func TestServerIntegration(t *testing.T) {
 	require.NoError(t, err, "Failed to initialize module: %s", string(output))
 
 	// Replace the dependency with the local version
-	cmd = exec.Command("go", "mod", "edit", "-replace", "github.com/metoro-io/mcp-golang="+currentDir)
+	cmd = exec.Command("go", "mod", "edit", "-replace", "github.com/squeakycheese75/mcp-golang="+currentDir)
 	cmd.Dir = tmpDir
 	output, err = cmd.CombinedOutput()
 	require.NoError(t, err, "Failed to replace dependency: %s", string(output))
