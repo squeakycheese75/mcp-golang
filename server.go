@@ -127,8 +127,6 @@ type tool struct {
 	ToolInputSchema *jsonschema.Schema
 }
 
-type Tool = tool
-
 type resource struct {
 	Name        string
 	Description string
@@ -199,13 +197,37 @@ func (s *Server) RegisterTool(name string, description string, handler any) erro
 	if err != nil {
 		return err
 	}
+
 	inputSchema := createJsonSchemaFromHandler(handler)
+
+	return s.registerTool(name, description, inputSchema, handler)
+}
+
+// RegisterToolWithSchema registers a new tool with the server awith provided schema
+func (s *Server) RegisterToolWithSchema(
+	name string,
+	description string,
+	schema *jsonschema.Schema,
+	handler any,
+) error {
+	return s.registerTool(name, description, schema, handler)
+}
+
+func (s *Server) registerTool(name string, description string, schema *jsonschema.Schema, handler any) error {
+	err := validateToolHandler(handler)
+	if err != nil {
+		return err
+	}
+
+	if schema == nil {
+		return fmt.Errorf("registerTool must have non nil schema")
+	}
 
 	s.tools.Store(name, &tool{
 		Name:            name,
 		Description:     description,
 		Handler:         createWrappedToolHandler(handler),
-		ToolInputSchema: inputSchema,
+		ToolInputSchema: schema,
 	})
 
 	return s.sendToolListChangedNotification()
@@ -732,6 +754,7 @@ func (s *Server) generateCapabilities() ServerCapabilities {
 		}(),
 	}
 }
+
 func (s *Server) handleListPrompts(ctx context.Context, request *transport.BaseJSONRPCRequest, extra protocol.RequestHandlerExtra) (transport.JsonRpcBody, error) {
 	type promptRequestParams struct {
 		Cursor *string `json:"cursor"`
@@ -988,21 +1011,6 @@ func (s *Server) handleResourceCalls(ctx context.Context, req *transport.BaseJSO
 
 func (s *Server) handlePing(ctx context.Context, request *transport.BaseJSONRPCRequest, extra protocol.RequestHandlerExtra) (transport.JsonRpcBody, error) {
 	return map[string]interface{}{}, nil
-}
-
-func (s *Server) RegisterToolWithSchema(
-	name string,
-	description string,
-	schema *jsonschema.Schema,
-	handler any,
-) error {
-	s.tools.Store(name, &Tool{
-		Name:            name,
-		Description:     description,
-		Handler:         createWrappedToolHandler(handler),
-		ToolInputSchema: schema,
-	})
-	return s.sendToolListChangedNotification()
 }
 
 func validateToolHandler(handler any) error {
